@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="api" label="COM_YASTORAGE_CONFIGURATION" description="COM_YASTORAGE_CONFIGURATION_DESC">
+        <field name="lbl_server"
+               label="COM_YASTORAGE_CONFIGURATION_API_SERVER"
+               description="COM_YASTORAGE_CONFIGURATION_API_SERVER_DESC"
+               type="spacer"
+               />
+        <field name="server"
+               label="COM_YASTORAGE_CONFIGURATION_API_SERVER"
+               description="COM_YASTORAGE_CONFIGURATION_API_SERVER_DESC"
+               hint="storage.yandexcloud.net"
+               type="text"
+               required="true"
+               default="storage.yandexcloud.net"
+        />
+        <field name="lbl_service_keys"
+               type="spacer"
+               label="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS"
+               description="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS_DESC"
+        />
+        <field name="key_id"
+               type="text"
+               label="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS_ID"
+               description="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS_ID_DESC"
+               required="true"
+               />
+        <field name="key_value"
+               type="text"
+               label="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS_VALUE"
+               description="COM_YASTORAGE_CONFIGURATION_API_SERVICE_KEYS_VALUE_DESC"
+               required="true"
+               />
+    </fieldset>
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field name="rules"
+               type="rules"
+               label="JCONFIG_PERMISSIONS_LABEL"
+               filter="rules"
+               component="com_yastorage"
+               section="component">
+        </field>
+    </fieldset>
+</config>
