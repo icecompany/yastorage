@@ -5,10 +5,8 @@ defined('_JEXEC') or die;
 
 class YastorageViewYastorage extends HtmlView
 {
-	protected $helper;
-	protected $sidebar = '';
-	public $status;
-	public $buckets;
+	protected $helper, $sidebar, $state, $pagination, $uploadAction;
+	public $items;
 
 	public function display($tpl = null)
 	{
@@ -19,8 +17,10 @@ class YastorageViewYastorage extends HtmlView
 		$this->helper = new YastorageHelper;
 		$this->helper->addSubmenu('yastorage');
 		$this->sidebar = JHtmlSidebar::render();
-		$this->status = $this->get('Status');
-		$this->buckets = $this->get('Buckets');
+		$this->items = $this->get('Items');
+		$this->state = $this->get('State');
+		$this->pagination = $this->get('Pagination');
+		$this->uploadAction = $this->get('uploadAction');
 
 		// Display it all
 		return parent::display($tpl);
