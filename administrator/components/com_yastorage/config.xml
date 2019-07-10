@@ -54,6 +54,22 @@
                required="true"
                />
     </fieldset>
+    <fieldset name="images" label="COM_YASTORAGE_CONFIGURATION_IMAGES" description="COM_YASTORAGE_CONFIGURATION_IMAGES_DESC">
+        <field name="img_resize_preview_x"
+               type="number"
+               label="COM_YASTORAGE_CONFIGURATION_IMAGES_PREVIEW_RESIZE_X"
+               description="COM_YASTORAGE_CONFIGURATION_IMAGES_PREVIEW_RESIZE_X_DESC"
+               required="true"
+               default="360"
+               />
+        <field name="img_resize_x"
+               type="number"
+               label="COM_YASTORAGE_CONFIGURATION_IMAGES_RESIZE_X"
+               description="COM_YASTORAGE_CONFIGURATION_IMAGES_RESIZE_X_DESC"
+               required="true"
+               default="640"
+               />
+    </fieldset>
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
         <field name="rules"
                type="rules"

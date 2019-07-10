@@ -14,6 +14,7 @@ class YastorageModelYastorage extends ListModel
 
     public function upload($url): array
     {
+        $config = JComponentHelper::getParams($this->option);
         $t = mktime();
         $info = pathinfo($url);
         $fname = basename($url,'.'.$info['extension']);
@@ -21,20 +22,28 @@ class YastorageModelYastorage extends ListModel
         $path_full = JPATH_SITE."/images/{$t}_{$fname}_full.{$info['extension']}";
         $path_preview = JPATH_SITE."/images/{$t}_{$fname}_preview.{$info['extension']}";
         $this->downloadFile($url, $destination);
-        $image = new SimpleImage();
-        $image->load($destination);
-        $image->resizeToWidth(640);
-        $image->save($path_full);
+        $this->resize($destination, $path_full, $config->get('img_resize_x'));
         $this->sapi->upload('news', $path_full);
         @unlink($path_full);
-        $image = new SimpleImage();
-        $image->load($destination);
-        $image->resizeToWidth(360);
-        $image->save($path_preview);
+        $this->resize($destination, $path_preview, $config->get('img_resize_preview_x'));
         $this->sapi->upload('news', $path_preview);
         @unlink($path_preview);
         @unlink($destination);
         return array('preview' => $path_preview, 'full' => $path_full);
+    }
+
+    /**
+     * @param string $original путь с оригинальным изображением
+     * @param string $destination путь для сохранения изображения
+     * @param int $width размер по горизонтали
+     * @since 1.0.0.2
+     */
+    private function resize(string $original = '', string $destination = '', int $width = 1): void
+    {
+        $image = new SimpleImage();
+        $image->load($original);
+        $image->resizeToWidth($width);
+        $image->save($destination);
     }
 
     function downloadFile($URL, $PATH) {
