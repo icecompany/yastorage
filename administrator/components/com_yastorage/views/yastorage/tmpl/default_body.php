@@ -16,8 +16,5 @@ foreach ($this->items as $name => $item) :
         <td>
             <?php echo $item['storage'];?>
         </td>
-        <td>
-            <input type="text" size="20" onfocus="this.select();" value="<?php echo $item['link'];?>">
-        </td>
     </tr>
 <?php endforeach; ?>

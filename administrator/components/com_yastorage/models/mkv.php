@@ -27,6 +27,7 @@ class YastorageModelMkv extends BaseDatabaseModel
     {
         $s3 = new S3Client($this->shared_config);
         $full = "{$prefix}/{$name}";
+        if (!file_exists($url)) return;
         $s3->putObject([
             'Bucket'     => $bucket,
             'Key'        => $full,
@@ -56,8 +57,9 @@ class YastorageModelMkv extends BaseDatabaseModel
         $params = ['Bucket' => $bucket];
         if (!empty($prefix)) $params['Prefix'] = $prefix;
         $objects = $s3->listObjectsV2($params);
+        if (empty($objects)) return [];
         $tmp = $objects->toArray();
-        return $tmp['Contents'];
+        return $tmp['Contents'] ?? [];
     }
 
     public function getLink(string $key): string
