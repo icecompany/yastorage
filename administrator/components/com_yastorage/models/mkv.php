@@ -62,10 +62,10 @@ class YastorageModelMkv extends BaseDatabaseModel
         return $tmp['Contents'] ?? [];
     }
 
-    public function getLink(string $key): string
+    public function getLink(string $bucket, string $key): string
     {
         $s3 = new S3Client($this->shared_config);
-        $cmd = $s3->getCommand('GetObject',['Bucket' => $this->bucket, 'Key' => $key]);
+        $cmd = $s3->getCommand('GetObject',['Bucket' => $bucket, 'Key' => $key]);
         $signed_url = $s3->createPresignedRequest($cmd, '+1 hour');
         return (string) $signed_url->getUri();
     }
